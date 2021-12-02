@@ -23,9 +23,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/buy-cookie', function () {
+    Route::get('/buy', function () {
         return view('buy-cookie');
-    })->name('cookie');
+    })->name('buy');
     Route::get('buy/{cookies}', function ($cookies) {
         $wallet = Auth::user()->wallet;
         if($wallet < $cookies)

@@ -47,7 +47,7 @@ var baseurl = jQuery('meta[name="baseurl"]').prop('content');
             @endif
         @else
             <li><a href="{{ url('/home') }}">Home</a></li>
-            <li><a href="{{ url('/buy-cookie') }}">Buy Cookies</a></li>
+            <li><a href="{{ url('/buy') }}">Buy Cookies</a></li>
             <li><a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
