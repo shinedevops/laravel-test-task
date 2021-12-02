@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     })->name('cookie');
     Route::get('buy/{cookies}', function ($cookies) {
         $wallet = Auth::user()->wallet;
+        if($wallet < $cookies)
+        return "Not enough credit in your wallet";
         $user = Auth::user();
         User::where('id', $user->id)->update(['wallet' => $wallet - $cookies * 1]);
         Log:info('User ' . $user->email . ' have bought ' . $cookies . ' cookies'); // we need to log who ordered and how much
