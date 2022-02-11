@@ -27,12 +27,10 @@ Route::middleware('auth')->group(function () {
         return view('buy-cookie');
     })->name('buy');
     Route::get('buy/{cookies}', function ($cookies) {
-        $wallet = Auth::user()->wallet;
-        if($wallet < $cookies)
+        if(Auth::user()->wallet < $cookies)
         return "Not enough credit in your wallet";
-        $user = Auth::user();
-        User::where('id', $user->id)->update(['wallet' => $wallet - $cookies * 1]);
-        Log:info('User ' . $user->email . ' have bought ' . $cookies . ' cookies'); // we need to log who ordered and how much
+        Auth::user()->update(['wallet' => Auth::user()->wallet - $cookies * 1]);
+        Log:info('User ' . Auth::user()->email . ' have bought ' . $cookies . ' cookies'); // we need to log who ordered and how much
         return 'Success, you have bought ' . $cookies . ' cookies!';
     });
 });
